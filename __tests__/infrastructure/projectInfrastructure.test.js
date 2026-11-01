@@ -10,6 +10,9 @@ test('project scripts provide report-only progress and infrastructure checks', (
   const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
   expect(packageJson.scripts['check-progress:report']).toBeDefined();
   expect(packageJson.scripts['test:infrastructure']).toBeDefined();
+  expect(packageJson.scripts['android:build']).toBe('expo run:android');
+  expect(packageJson.scripts['start:dev-client']).toBe('expo start --dev-client');
+  expect(packageJson.scripts['start:expo-go']).toBe('expo start --go');
   expect(packageJson.scripts.verify).toContain('check-progress');
 });
 
@@ -29,14 +32,14 @@ test('README documents SDK-compatible install and native map setup', () => {
   expect(readme).toContain('Expo Go');
   expect(readme).toContain('Google Cloud');
   expect(readme).toContain('Ann Arbor');
-  expect(readme).toContain('separate iOS-restricted key');
+  expect(readme).toContain('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY');
 });
 
 test('environment template is tracked while the regular local env file is ignored', () => {
   const example = fs.readFileSync(path.join(root, '.env.example'), 'utf8');
   const gitignore = fs.readFileSync(path.join(root, '.gitignore'), 'utf8');
   expect(example).toContain('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY=');
-  expect(example).toContain('EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY=');
+  expect(example).not.toContain('EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY=');
   expect(gitignore).toContain('.env');
   expect(gitignore).toContain('!.env.example');
 });

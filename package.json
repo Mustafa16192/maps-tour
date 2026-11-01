@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "expo": "~57.0.31",
+    "expo-dev-client": "~57.0.20",
     "expo-location": "~57.0.22",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
@@ -12,9 +13,12 @@
     "react-native-safe-area-context": "~5.7.0"
   },
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "expo start --dev-client",
+    "start:dev-client": "expo start --dev-client",
+    "start:expo-go": "expo start --go",
+    "android": "expo start --android --dev-client",
+    "android:build": "expo run:android",
+    "ios": "expo start --ios --go",
     "test": "jest --runInBand",
     "test:infrastructure": "jest --runInBand --testPathPattern=infrastructure",
     "check-progress": "node scripts/check-progress.js",

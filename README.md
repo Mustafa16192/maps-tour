@@ -15,23 +15,46 @@ The progress checker parses active TypeScript/JSX with Babel. It does not count 
 git clone <repository-url>
 cd maps-tour
 npm ci
-npx expo start
 ```
 
-Open the project in Expo Go on an iOS or Android device, or use a simulator/emulator. This is a native-only tour: `react-native-maps` is supported on iOS and Android, not in a browser. Expo SDK 57 includes it in Expo Go, so a Google Cloud project and API key are not needed for the classroom Expo Go workflow.
+### iOS students
 
-The map and location packages were installed with `npx expo install react-native-maps expo-location` to match this Expo SDK. A clean checkout already has the resolved versions in `package-lock.json`; `npm ci` is all that is needed to install them.
+Run `npm run ios` to start the project in Expo Go. iOS uses Apple Maps by default, so no Google Maps key is required.
 
-The location permission copy is configured in `app.json`. Part 7 requests foreground permission only after tapping **My location**. If permission is denied or unavailable, the map and local place list remain usable.
+### Android students
 
-## Optional Google Maps setup for custom native builds
+Install the **Android development APK supplied by the instructor** on an Android phone or emulator, then run:
 
-Expo Go includes the map configuration needed for this tour. If you later build a standalone app that uses Google Maps, configure a restricted key and rebuild the native app:
+```sh
+npm run android
+```
 
-1. Create a Google Cloud project, enable billing, and enable **Maps SDK for Android**. Expo Go normally uses its bundled map configuration; these steps are for a custom native build.
-2. Create a dedicated Android API key. Restrict it to **Maps SDK for Android** and the Android application ID plus signing SHA-1 for your build. The sample application ID is `edu.example.mapstour`.
-3. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY`. This app uses Apple Maps on iOS by default, so it needs no iOS Google key. If you switch iOS to Google Maps, create a separate iOS-restricted key for the bundle identifier; Android and iOS application restrictions cannot share one key.
-4. Run `npx expo run:android` to generate and install a custom Android build with the configured key. Native config changes do not take effect in Expo Go or an already-installed binary. `.env` is ignored by Git; keep real keys out of commits.
+This starts Metro for the installed development client. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
+
+Both platforms need a running Metro server to see JavaScript edits. The app uses Apple Maps on iOS and Google Maps on Android; `react-native-maps` has no browser implementation.
+
+The SDK-compatible `react-native-maps` and `expo-location` packages are already recorded in `package-lock.json`; `npm ci` installs them. They were originally added with `npx expo install react-native-maps expo-location`.
+
+## Instructor: create the shared Android development APK
+
+This is a one-time instructor task. Students only install the resulting APK.
+
+1. In Google Cloud, enable billing and **Maps SDK for Android**. Create a dedicated Android key restricted to that API and the app ID `edu.example.mapstour` plus the signing SHA-1 of the instructor's debug keystore. On macOS, get that fingerprint with:
+
+   ```sh
+   keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+   ```
+2. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY` to that key. The key is embedded in the APK and visible to clients, so keep its API and app restrictions enabled. `.env` is ignored by Git.
+3. Ensure Android Studio's SDK is available to the shell as `ANDROID_HOME`, then generate and install the development APK:
+
+   ```sh
+   npx expo prebuild --clean --platform android
+   npm run android:build
+   ```
+
+4. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK, then run `npm run android` to connect it to their local Metro server. They do not need to build native code or access the Google Cloud project.
+
+If the Google Maps key or native config changes, regenerate and rebuild the APK. `.env.example` lists the Android key variable used by this tour.
 
 These API keys are used by a client app, so restrictions and usage limits matter. Do not add service-account credentials or private keys to the app.
 

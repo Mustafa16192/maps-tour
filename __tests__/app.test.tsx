@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import App from '../App';
 import { PLACES } from '../src/data/places';
 import { getCurrentCoordinates } from '../src/services/locationService';
@@ -86,7 +86,9 @@ test('PART 6 missing behavior: fit the camera to all places', async () => {
   const screen = await render(<App />);
   const button = screen.queryByRole('button', { name: 'Fit all places' });
   requireLesson(button !== null, 'PART 6 missing behavior: add the fit-all camera control.');
-  await fireEvent.press(button!);
+  await act(async () => {
+    fireEvent.press(button!);
+  });
   const mapMock = jest.requireMock('react-native-maps').__mapMock;
   expect(mapMock.fitToCoordinates).toHaveBeenCalledWith(
     PLACES.map(place => place.coordinate),
@@ -98,7 +100,9 @@ test('PART 7 missing behavior: request foreground location and show the result',
   const screen = await render(<App />);
   const button = screen.queryByRole('button', { name: 'My location' });
   requireLesson(button !== null, 'PART 7 missing behavior: provide an explicit My location action.');
-  await fireEvent.press(button!);
+  await act(async () => {
+    fireEvent.press(button!);
+  });
   await waitFor(() => expect(locationMock).toHaveBeenCalledTimes(1));
   expect(screen.getByText('Current position: 37.7694, -122.4156')).toBeTruthy();
 });
@@ -108,7 +112,9 @@ test('PART 7 missing behavior: explain denied permission while keeping the guide
   const screen = await render(<App />);
   const button = screen.queryByRole('button', { name: 'My location' });
   requireLesson(button !== null, 'PART 7 missing behavior: provide an explicit My location action.');
-  await fireEvent.press(button!);
+  await act(async () => {
+    fireEvent.press(button!);
+  });
   expect(screen.getByText('Location permission was not granted. You can still explore the map.')).toBeTruthy();
 });
 

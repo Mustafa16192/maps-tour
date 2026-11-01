@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": ["ios", "android"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "edu.example.mapstour"
@@ -26,9 +27,6 @@
           "locationWhenInUsePermission": "Allow City Explorer to show your position on the map."
         }
       ]
-    ],
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    ]
   }
 }

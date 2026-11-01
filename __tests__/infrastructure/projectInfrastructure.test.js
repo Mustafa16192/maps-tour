@@ -29,15 +29,45 @@ test('README documents SDK-compatible install and native map setup', () => {
   expect(readme).toContain('Expo Go');
   expect(readme).toContain('Google Cloud');
   expect(readme).toContain('Ann Arbor');
+  expect(readme).toContain('separate iOS-restricted key');
 });
 
 test('environment template is tracked while the regular local env file is ignored', () => {
   const example = fs.readFileSync(path.join(root, '.env.example'), 'utf8');
   const gitignore = fs.readFileSync(path.join(root, '.gitignore'), 'utf8');
-  expect(example).toContain('GOOGLE_MAPS_ANDROID_API_KEY=');
-  expect(example).toContain('GOOGLE_MAPS_IOS_API_KEY=');
+  expect(example).toContain('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY=');
+  expect(example).toContain('EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY=');
   expect(gitignore).toContain('.env');
   expect(gitignore).toContain('!.env.example');
+});
+
+test('custom native map config accepts Expo-public API key names', () => {
+  const names = [
+    'EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY',
+    'EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY',
+    'GOOGLE_MAPS_ANDROID_API_KEY',
+    'GOOGLE_MAPS_IOS_API_KEY',
+  ];
+  const original = Object.fromEntries(names.map(name => [name, process.env[name]]));
+
+  try {
+    process.env.EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY = 'android-test-key';
+    process.env.EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY = 'ios-test-key';
+    delete process.env.GOOGLE_MAPS_ANDROID_API_KEY;
+    delete process.env.GOOGLE_MAPS_IOS_API_KEY;
+
+    const config = require('../../app.config.js')({ config: { plugins: [] } });
+    const mapPlugin = config.plugins.find(plugin => Array.isArray(plugin) && plugin[0] === 'react-native-maps');
+    expect(mapPlugin[1]).toEqual({
+      androidGoogleMapsApiKey: 'android-test-key',
+      iosGoogleMapsApiKey: 'ios-test-key',
+    });
+  } finally {
+    for (const name of names) {
+      if (original[name] === undefined) delete process.env[name];
+      else process.env[name] = original[name];
+    }
+  }
 });
 
 test('starter app parses and provides its safe area provider above the screen', () => {

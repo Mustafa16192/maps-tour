@@ -28,10 +28,10 @@ The location permission copy is configured in `app.json`. Part 7 requests foregr
 
 Expo Go includes the map configuration needed for this tour. If you later build a standalone app that uses Google Maps, configure a restricted key and rebuild the native app:
 
-1. Create a Google Cloud project and enable **Maps SDK for Android**. Enable **Maps SDK for iOS** only if you plan to use the Google provider on iOS instead of the default Apple Maps provider.
-2. Create an API key restricted to the app package/bundle identifier and the matching Android SHA-1 certificate where applicable. Restrict the key to the map SDKs you enabled.
-3. Copy `.env.example` to `.env`, then set `GOOGLE_MAPS_ANDROID_API_KEY` (and optionally `GOOGLE_MAPS_IOS_API_KEY`). `app.config.js` passes configured keys to the `react-native-maps` config plugin. `.env` is ignored by Git; keep real keys out of commits.
-4. Create a development or production build; native config changes do not take effect in an already-installed binary.
+1. Create a Google Cloud project, enable billing, and enable **Maps SDK for Android**. Expo Go normally uses its bundled map configuration; these steps are for a custom native build.
+2. Create a dedicated Android API key. Restrict it to **Maps SDK for Android** and the Android application ID plus signing SHA-1 for your build. The sample application ID is `edu.example.mapstour`.
+3. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY`. This app uses Apple Maps on iOS by default, so it needs no iOS Google key. If you switch iOS to Google Maps, create a separate iOS-restricted key for the bundle identifier; Android and iOS application restrictions cannot share one key.
+4. Run `npx expo run:android` to generate and install a custom Android build with the configured key. Native config changes do not take effect in Expo Go or an already-installed binary. `.env` is ignored by Git; keep real keys out of commits.
 
 These API keys are used by a client app, so restrictions and usage limits matter. Do not add service-account credentials or private keys to the app.
 

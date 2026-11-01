@@ -1,10 +1,15 @@
 module.exports = ({ config }) => {
   const mapsOptions = {};
-  if (process.env.GOOGLE_MAPS_ANDROID_API_KEY) {
-    mapsOptions.androidGoogleMapsApiKey = process.env.GOOGLE_MAPS_ANDROID_API_KEY;
+  const androidApiKey = process.env.EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY
+    || process.env.GOOGLE_MAPS_ANDROID_API_KEY;
+  const iosApiKey = process.env.EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY
+    || process.env.GOOGLE_MAPS_IOS_API_KEY;
+
+  if (androidApiKey) {
+    mapsOptions.androidGoogleMapsApiKey = androidApiKey;
   }
-  if (process.env.GOOGLE_MAPS_IOS_API_KEY) {
-    mapsOptions.iosGoogleMapsApiKey = process.env.GOOGLE_MAPS_IOS_API_KEY;
+  if (iosApiKey) {
+    mapsOptions.iosGoogleMapsApiKey = iosApiKey;
   }
 
   return {

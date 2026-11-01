@@ -23,13 +23,13 @@ Run `npm run ios` to start the project in Expo Go. iOS uses Apple Maps by defaul
 
 ### Android students
 
-Install the **Android development APK supplied by the instructor** on an Android phone or emulator, then run:
+Install the **Android development APK supplied by the instructor** on an Android phone or emulator, then start Metro:
 
 ```sh
-npm run android
+npm run start:dev-client
 ```
 
-This starts Metro for the installed development client. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
+Open the development client on the Android device and connect to the QR code shown by Metro. On an emulator with Android SDK tools installed, `npm run android` opens the development client automatically. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
 
 Both platforms need a running Metro server to see JavaScript edits. The app uses Apple Maps on iOS and Google Maps on Android; `react-native-maps` has no browser implementation.
 

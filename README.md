@@ -18,7 +18,7 @@ npm ci
 npx expo start
 ```
 
-Open the project in Expo Go on an iOS or Android device, or use a simulator/emulator. This tour uses `react-native-maps`, which Expo SDK 58 supports in Expo Go; a Google Cloud project and API key are not needed for the classroom Expo Go workflow. The web command can show the static guide, but the interactive native map lessons target iOS and Android.
+Open the project in Expo Go on an iOS or Android device, or use a simulator/emulator. This tour uses `react-native-maps`, which Expo SDK 57 supports in Expo Go; a Google Cloud project and API key are not needed for the classroom Expo Go workflow. The web command can show the static guide, but the interactive native map lessons target iOS and Android.
 
 The map and location packages were installed with `npx expo install react-native-maps expo-location` to match this Expo SDK. A clean checkout already has the resolved versions in `package-lock.json`; `npm ci` is all that is needed to install them.
 

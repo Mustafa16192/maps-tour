@@ -45,14 +45,22 @@ This is a one-time instructor task. Students only install the resulting APK.
    keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
    ```
 2. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY` to that key. The key is embedded in the APK and visible to clients, so keep its API and app restrictions enabled. `.env` is ignored by Git.
-3. Ensure Android Studio's SDK is available to the shell as `ANDROID_HOME`, then generate and install the development APK:
+3. On macOS, point the build shell at Android Studio's default SDK location (use the SDK path shown in Android Studio's SDK Manager if yours differs):
+
+   ```sh
+   export ANDROID_HOME="$HOME/Library/Android/sdk"
+   export ANDROID_SDK_ROOT="$ANDROID_HOME"
+   export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+   ```
+
+4. With the same terminal open, generate and install the development APK:
 
    ```sh
    npx expo prebuild --clean --platform android
    npm run android:build
    ```
 
-4. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK, then run `npm run android` to connect it to their local Metro server. They do not need to build native code or access the Google Cloud project.
+5. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK, then run `npm run android` to connect it to their local Metro server. They do not need to build native code or access the Google Cloud project.
 
 If the Google Maps key or native config changes, regenerate and rebuild the APK. `.env.example` lists the Android key variable used by this tour.
 

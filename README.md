@@ -1,6 +1,6 @@
 # Expo Maps Tour: City Explorer
 
-A small Expo + React Native code tour that turns a static city guide into an interactive map. The lessons cover a map region, data-driven markers, selection, map taps, overlays, camera controls, foreground location permission, and local search. The app keeps its data and UI local and uses explicit React state.
+A small Expo + React Native code tour that turns an Ann Arbor city guide into an interactive map. The lessons cover a map region, data-driven markers, selection, map taps, overlays, camera controls, foreground location permission, and local search. The app keeps its data and UI local and uses explicit React state.
 
 ## Branches
 
@@ -30,7 +30,7 @@ Expo Go includes the map configuration needed for this tour. If you later build 
 
 1. Create a Google Cloud project and enable **Maps SDK for Android**. Enable **Maps SDK for iOS** only if you plan to use the Google provider on iOS instead of the default Apple Maps provider.
 2. Create an API key restricted to the app package/bundle identifier and the matching Android SHA-1 certificate where applicable. Restrict the key to the map SDKs you enabled.
-3. Set `GOOGLE_MAPS_ANDROID_API_KEY` (and optionally `GOOGLE_MAPS_IOS_API_KEY`) in your local build environment. `app.config.js` passes configured keys to the `react-native-maps` config plugin.
+3. Copy `.env.example` to `.env`, then set `GOOGLE_MAPS_ANDROID_API_KEY` (and optionally `GOOGLE_MAPS_IOS_API_KEY`). `app.config.js` passes configured keys to the `react-native-maps` config plugin. `.env` is ignored by Git; keep real keys out of commits.
 4. Create a development or production build; native config changes do not take effect in an already-installed binary.
 
 These API keys are used by a client app, so restrictions and usage limits matter. Do not add service-account credentials or private keys to the app.

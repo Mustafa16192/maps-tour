@@ -42,7 +42,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   locationMock.mockResolvedValue({
     status: 'granted',
-    coordinate: { latitude: 37.7694, longitude: -122.4156 },
+    coordinate: { latitude: 42.28, longitude: -83.74 },
   });
 });
 
@@ -59,7 +59,7 @@ test('PART 2 missing behavior: show one marker for every place', async () => {
 
 test('PART 3 missing behavior: show details when a marker is selected', async () => {
   const screen = await render(<App />);
-  const marker = screen.queryByLabelText('Mission Dolores Park');
+  const marker = screen.queryByLabelText('University of Michigan Diag');
   requireLesson(marker !== null, 'PART 3 missing behavior: add selectable place markers.');
   await fireEvent.press(marker!);
   requireLesson(screen.queryByTestId('selected-place-card') !== null, 'PART 3 missing behavior: show the selected place details.');
@@ -69,9 +69,9 @@ test('PART 4 missing behavior: tapping the map drops a pin and shows its coordin
   const screen = await render(<App />);
   const map = screen.queryByTestId('city-map');
   requireLesson(map !== null, 'PART 4 missing behavior: enable the map before adding its tap handler.');
-  await fireEvent.press(map!, { nativeEvent: { coordinate: { latitude: 37.77, longitude: -122.42 } } });
+  await fireEvent.press(map!, { nativeEvent: { coordinate: { latitude: 42.281, longitude: -83.739 } } });
   requireLesson(screen.queryByTestId('dropped-pin-coordinate') !== null, 'PART 4 missing behavior: render a temporary pin and its tapped coordinate.');
-  expect(screen.getByText('Dropped pin: 37.7700, -122.4200')).toBeTruthy();
+  expect(screen.getByText('Dropped pin: 42.2810, -83.7390')).toBeTruthy();
 });
 
 test('PART 5 missing behavior: draw the route and tour boundary', async () => {
@@ -104,7 +104,7 @@ test('PART 7 missing behavior: request foreground location and show the result',
     fireEvent.press(button!);
   });
   await waitFor(() => expect(locationMock).toHaveBeenCalledTimes(1));
-  expect(screen.getByText('Current position: 37.7694, -122.4156')).toBeTruthy();
+  expect(screen.getByText('Current position: 42.2800, -83.7400')).toBeTruthy();
 });
 
 test('PART 7 missing behavior: explain denied permission while keeping the guide usable', async () => {
@@ -124,15 +124,15 @@ test('PART 8 missing behavior: filter places and focus a selected search result'
   requireLesson(search !== null, 'PART 8 missing behavior: add a place search field.');
   await fireEvent.changeText(search!, 'park');
   expect(screen.getByText('1 place')).toBeTruthy();
-  await fireEvent.changeText(search!, 'painted');
-  const result = screen.queryByTestId('place-card-painted-ladies');
+  await fireEvent.changeText(search!, 'arboretum');
+  const result = screen.queryByTestId('place-card-nichols-arboretum');
   requireLesson(result !== null, 'PART 8 missing behavior: include place names in search results.');
   await fireEvent.press(result!);
   expect(screen.getByTestId('selected-place-card')).toBeTruthy();
-  expect(screen.getByText('Focused on Painted Ladies')).toBeTruthy();
+  expect(screen.getByText('Focused on Nichols Arboretum')).toBeTruthy();
   const mapMock = jest.requireMock('react-native-maps').__mapMock;
   expect(mapMock.animateToRegion).toHaveBeenCalledWith(
-    expect.objectContaining({ latitude: 37.7761, longitude: -122.4328 }),
+    expect.objectContaining({ latitude: 42.2858, longitude: -83.7189 }),
     450,
   );
 });

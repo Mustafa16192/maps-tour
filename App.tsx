@@ -37,10 +37,10 @@ const LESSONS = {
 };
 
 const INITIAL_REGION = {
-  latitude: 37.7694,
-  longitude: -122.4156,
-  latitudeDelta: 0.035,
-  longitudeDelta: 0.035,
+  latitude: 42.28,
+  longitude: -83.74,
+  latitudeDelta: 0.05,
+  longitudeDelta: 0.065,
 };
 
 export default function App() {
@@ -110,7 +110,7 @@ export default function App() {
           <Text style={styles.eyebrow}>EXPO + REACT NATIVE</Text>
           <Text style={styles.title}>City Explorer</Text>
           <Text style={styles.subtitle}>
-            Explore a few favorite spots in San Francisco. Turn on each map feature as you work through the tour.
+            Explore a few favorite spots in Ann Arbor. Turn on each map feature as you work through the tour.
           </Text>
 
           {LESSONS.search ? (
@@ -168,8 +168,8 @@ export default function App() {
             ) : (
               <View accessibilityLabel="Map preview" style={styles.mapPlaceholder}>
                 <View style={styles.mapGrid} />
-                <View style={styles.previewPin}><Text style={styles.previewPinText}>SF</Text></View>
-                <Text style={styles.previewTitle}>San Francisco, California</Text>
+                <View style={styles.previewPin}><Text style={styles.previewPinText}>AA</Text></View>
+                <Text style={styles.previewTitle}>Ann Arbor, Michigan</Text>
                 <Text style={styles.previewCaption}>Enable Part 1 to explore the interactive map.</Text>
               </View>
             )}
@@ -328,7 +328,7 @@ export default function App() {
 // PRODUCT QUESTION: Should results match names, categories, or addresses?
 // DO: Change `search` from false to true above. Parts 3 and 6 should already be on
 //     so choosing a result can show details and move the camera.
-// VERIFY: Search for “park”, then tap a result and watch the map focus on it.
+// VERIFY: Search for “arboretum”, then tap a result and watch the map focus on it.
 // NEXT: Run `npm run check-progress` and `npm test` to review the completed tour.
 // ======================================================
 

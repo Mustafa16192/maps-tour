@@ -9,48 +9,48 @@ export type Place = {
 
 export const PLACES: Place[] = [
   {
-    id: 'mission-dolores',
-    name: 'Mission Dolores Park',
+    id: 'umich-diag',
+    name: 'University of Michigan Diag',
+    category: 'Campus',
+    address: 'Central Campus, University of Michigan',
+    description: 'The campus crossroads where students meet between classes.',
+    coordinate: { latitude: 42.278, longitude: -83.7382 },
+  },
+  {
+    id: 'michigan-theater',
+    name: 'Michigan Theater',
+    category: 'Theater',
+    address: '603 E Liberty St',
+    description: 'A historic downtown movie palace and performing arts venue.',
+    coordinate: { latitude: 42.2808, longitude: -83.7482 },
+  },
+  {
+    id: 'zingermans-deli',
+    name: "Zingerman's Delicatessen",
+    category: 'Deli',
+    address: '422 Detroit St',
+    description: 'A much-loved Ann Arbor deli in the historic Kerrytown district.',
+    coordinate: { latitude: 42.2847, longitude: -83.7455 },
+  },
+  {
+    id: 'nichols-arboretum',
+    name: 'Nichols Arboretum',
     category: 'Park',
-    address: '19th and Dolores St',
-    description: 'A sunny neighborhood park with a view of the city.',
-    coordinate: { latitude: 37.7596, longitude: -122.4269 },
-  },
-  {
-    id: 'ferry-building',
-    name: 'Ferry Building',
-    category: 'Market',
-    address: '1 Ferry Building',
-    description: 'A waterfront landmark filled with local food makers.',
-    coordinate: { latitude: 37.7955, longitude: -122.3937 },
-  },
-  {
-    id: 'painted-ladies',
-    name: 'Painted Ladies',
-    category: 'Landmark',
-    address: '700 Steiner St',
-    description: 'A colorful row of Victorian homes beside Alamo Square.',
-    coordinate: { latitude: 37.7761, longitude: -122.4328 },
-  },
-  {
-    id: 'japantown-peace-plaza',
-    name: 'Peace Plaza',
-    category: 'Plaza',
-    address: '1610 Geary Blvd',
-    description: 'A compact plaza at the center of Japantown.',
-    coordinate: { latitude: 37.7854, longitude: -122.4294 },
+    address: '1610 Washington Heights',
+    description: 'A riverside botanical garden with wooded trails and open lawns.',
+    coordinate: { latitude: 42.2858, longitude: -83.7189 },
   },
 ];
 
 export const ROUTE = [
   PLACES[0].coordinate,
-  { latitude: 37.7715, longitude: -122.4188 },
-  PLACES[2].coordinate,
+  { latitude: 42.2817, longitude: -83.7295 },
+  PLACES[3].coordinate,
 ];
 
 export const TOUR_BOUNDARY = [
-  { latitude: 37.751, longitude: -122.438 },
-  { latitude: 37.802, longitude: -122.438 },
-  { latitude: 37.802, longitude: -122.386 },
-  { latitude: 37.751, longitude: -122.386 },
+  { latitude: 42.27, longitude: -83.755 },
+  { latitude: 42.292, longitude: -83.755 },
+  { latitude: 42.292, longitude: -83.715 },
+  { latitude: 42.27, longitude: -83.715 },
 ];

@@ -14,12 +14,12 @@ beforeEach(() => jest.clearAllMocks());
 test('returns coordinates after foreground permission is granted', async () => {
   requestPermission.mockResolvedValue({ status: 'granted' } as Location.LocationPermissionResponse);
   getPosition.mockResolvedValue({
-    coords: { latitude: 37.75, longitude: -122.4 },
+    coords: { latitude: 42.28, longitude: -83.74 },
   } as Location.LocationObject);
 
   await expect(getCurrentCoordinates()).resolves.toEqual({
     status: 'granted',
-    coordinate: { latitude: 37.75, longitude: -122.4 },
+    coordinate: { latitude: 42.28, longitude: -83.74 },
   });
   expect(getPosition).toHaveBeenCalledTimes(1);
 });

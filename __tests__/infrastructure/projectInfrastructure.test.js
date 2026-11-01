@@ -28,6 +28,16 @@ test('README documents SDK-compatible install and native map setup', () => {
   expect(readme).toContain('npx expo install react-native-maps expo-location');
   expect(readme).toContain('Expo Go');
   expect(readme).toContain('Google Cloud');
+  expect(readme).toContain('Ann Arbor');
+});
+
+test('environment template is tracked while the regular local env file is ignored', () => {
+  const example = fs.readFileSync(path.join(root, '.env.example'), 'utf8');
+  const gitignore = fs.readFileSync(path.join(root, '.gitignore'), 'utf8');
+  expect(example).toContain('GOOGLE_MAPS_ANDROID_API_KEY=');
+  expect(example).toContain('GOOGLE_MAPS_IOS_API_KEY=');
+  expect(gitignore).toContain('.env');
+  expect(gitignore).toContain('!.env.example');
 });
 
 test('starter app parses and provides its safe area provider above the screen', () => {

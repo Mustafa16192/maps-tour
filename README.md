@@ -23,13 +23,19 @@ Run `npm run ios` to start the project in Expo Go. iOS uses Apple Maps by defaul
 
 ### Android students
 
-Install the **Android development APK supplied by the instructor** on an Android phone or emulator, then start Metro:
+Install the **Android development APK supplied by the instructor** on an Android phone or emulator. A class-restricted Google Drive link works well for sharing it.
+
+**Android emulator:** download the APK to the computer, start the emulator, and drag the APK file onto the emulator window. Confirm the Android install prompt.
+
+**Android phone:** open the class link, download the APK, then open it from Downloads. Android may ask you to allow installs from the browser or Drive app that downloaded it; allow that source and confirm installation. The sideload warning is expected for an instructor-built class app.
+
+After installing the APK, start Metro from this project:
 
 ```sh
 npm run start:dev-client
 ```
 
-Open the development client on the Android device and connect to the QR code shown by Metro. On an emulator with Android SDK tools installed, `npm run android` opens the development client automatically. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
+Open the installed **maps-tour** development app (it may use Expo branding) and connect to Metro's QR code. If the APK is already installed on an emulator with Android SDK tools configured, `npm run android` starts Metro and opens it automatically. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
 
 Both platforms need a running Metro server to see JavaScript edits. The app uses Apple Maps on iOS and Google Maps on Android; `react-native-maps` has no browser implementation.
 

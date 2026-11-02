@@ -33,6 +33,8 @@ test('README documents SDK-compatible install and native map setup', () => {
   expect(readme).toContain('Google Cloud');
   expect(readme).toContain('Ann Arbor');
   expect(readme).toContain('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY');
+  expect(readme).toContain('android/app/debug.keystore');
+  expect(readme).not.toContain('~/.android/debug.keystore');
 });
 
 test('environment template is tracked while the regular local env file is ignored', () => {

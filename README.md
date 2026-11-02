@@ -39,12 +39,12 @@ The SDK-compatible `react-native-maps` and `expo-location` packages are already 
 
 This is a one-time instructor task. Students only install the resulting APK.
 
-1. In Google Cloud, enable billing and **Maps SDK for Android**. Create a dedicated Android key restricted to that API and the app ID `edu.example.mapstour` plus the signing SHA-1 of the instructor's debug keystore. On macOS, get that fingerprint with:
+1. In Google Cloud, enable billing and **Maps SDK for Android**. Create a real Android API key for this project (not a sample/demo key), restricted to that API and the app ID `edu.example.mapstour` plus the signing SHA-1 of the instructor's debug keystore. On macOS, get that fingerprint with:
 
    ```sh
    keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
    ```
-2. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY` to that key. The key is embedded in the APK and visible to clients, so keep its API and app restrictions enabled. `.env` is ignored by Git.
+2. Copy `.env.example` to `.env` and set `EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY` to that key. The key is embedded in the APK and visible to clients, so keep its API and app restrictions enabled. `.env` is ignored by Git; don't send the key to students or commit it.
 3. On macOS, point the build shell at Android Studio's default SDK location (use the SDK path shown in Android Studio's SDK Manager if yours differs):
 
    ```sh
@@ -60,7 +60,7 @@ This is a one-time instructor task. Students only install the resulting APK.
    npm run android:build
    ```
 
-5. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK, then run `npm run android` to connect it to their local Metro server. They do not need to build native code or access the Google Cloud project.
+5. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK and run `npm run start:dev-client` to connect it to their local Metro server. They do not need to build native code, set up EAS, or access the Google Cloud project.
 
 If the Google Maps key or native config changes, regenerate and rebuild the APK. `.env.example` lists the Android key variable used by this tour.
 

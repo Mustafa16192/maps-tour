@@ -17,6 +17,8 @@ cd maps-tour
 git switch main
 npm ci
 ```
+### This requires an Emulator or Device - no Web Mode
+This uses Map APIs built into the device that browsers on your laptop do not have.
 
 ### iOS students
 
@@ -28,6 +30,7 @@ Install the [Android development APK shared for this class](https://drive.google
 
 **Android emulator:** download the APK to your computer, start the emulator, then drag the APK file onto the emulator window and confirm installation.
 
+>>>>>>> main
 **Android phone:** open the class link while signed in with your school account, download the APK, then open it from Downloads. If Android asks, allow installs from the browser or Drive app for this install, then confirm. The sideload warning is expected for an instructor-built class app.
 
 After installing the APK, start Metro from this project:

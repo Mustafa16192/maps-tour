@@ -14,6 +14,7 @@ The progress checker parses active TypeScript/JSX with Babel. It does not count 
 ```sh
 git clone <repository-url>
 cd maps-tour
+git switch main
 npm ci
 ```
 
@@ -23,11 +24,11 @@ Run `npm run ios` to start the project in Expo Go. iOS uses Apple Maps by defaul
 
 ### Android students
 
-Install the **Android development APK supplied by the instructor** on an Android phone or emulator. A class-restricted Google Drive link works well for sharing it.
+Install the [Android development APK shared for this class](https://drive.google.com/file/d/1H0xno7wLBqRSyFQxEBHb0t2-ICpYSCPI/view?usp=drive_link) on an Android phone or emulator. The Drive file is restricted to the school.
 
-**Android emulator:** download the APK to the computer, start the emulator, and drag the APK file onto the emulator window. Confirm the Android install prompt.
+**Android emulator:** download the APK to your computer, start the emulator, then drag the APK file onto the emulator window and confirm installation.
 
-**Android phone:** open the class link, download the APK, then open it from Downloads. Android may ask you to allow installs from the browser or Drive app that downloaded it; allow that source and confirm installation. The sideload warning is expected for an instructor-built class app.
+**Android phone:** open the class link while signed in with your school account, download the APK, then open it from Downloads. If Android asks, allow installs from the browser or Drive app for this install, then confirm. The sideload warning is expected for an instructor-built class app.
 
 After installing the APK, start Metro from this project:
 
@@ -35,7 +36,7 @@ After installing the APK, start Metro from this project:
 npm run start:dev-client
 ```
 
-Open the installed **maps-tour** development app (it may use Expo branding) and connect to Metro's QR code. If the APK is already installed on an emulator with Android SDK tools configured, `npm run android` starts Metro and opens it automatically. Students edit the tour code and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
+Open the installed **maps-tour** development app (it may show Expo branding) and connect to Metro's QR code. On an emulator with Android SDK tools installed, `npm run android` starts Metro and opens the development app automatically. Students edit the tour code on `main` and reload; they do not build the APK, create Google Cloud keys, or manage signing credentials. Google Maps is blank in the current Expo Go Android client for this library; see [react-native-maps issue #5888](https://github.com/react-native-maps/react-native-maps/issues/5888).
 
 Both platforms need a running Metro server to see JavaScript edits. The app uses Apple Maps on iOS and Google Maps on Android; `react-native-maps` has no browser implementation.
 
@@ -74,7 +75,7 @@ This is a one-time instructor task. Students only install the resulting APK.
    npm run android:build
    ```
 
-7. Share `android/app/build/outputs/apk/debug/app-debug.apk` with the class. Students install this same APK and run `npm run start:dev-client` to connect it to their local Metro server. They do not need to build native code, set up EAS, or access the Google Cloud project.
+7. Upload `android/app/build/outputs/apk/debug/app-debug.apk` to the school-restricted Drive location above. Students install this same APK and run `npm run start:dev-client` to connect it to their local Metro server. They do not need to build native code, set up EAS, or access the Google Cloud project.
 
 If the Google Maps key or native config changes, regenerate and rebuild the APK. `.env.example` lists the Android key variable used by this tour.
 

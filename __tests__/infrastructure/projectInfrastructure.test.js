@@ -35,6 +35,8 @@ test('README documents SDK-compatible install and native map setup', () => {
   expect(readme).toContain('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY');
   expect(readme).toContain('android/app/debug.keystore');
   expect(readme).not.toContain('~/.android/debug.keystore');
+  expect(readme).toContain('class-restricted Google Drive link');
+  expect(readme).toContain('drag the APK file onto the emulator window');
 });
 
 test('environment template is tracked while the regular local env file is ignored', () => {

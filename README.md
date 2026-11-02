@@ -18,6 +18,9 @@ git switch main
 npm ci
 ```
 
+### This requires an Emulator or Device - no Web Mode
+This uses Map APIs built into the device that browsers on your laptop do not have.
+
 ### iOS students
 
 Run `npm run ios` to start the project in Expo Go. iOS uses Apple Maps by default, so no Google Maps key is required.
